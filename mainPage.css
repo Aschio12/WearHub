@@ -1,0 +1,135 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#container {
+    width: 80%;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Navigation Bar */
+#nav {
+    background-color: #1e88e5;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+}
+
+#nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+#nav a:hover {
+    color: #ffd700;
+}
+
+/* Main Content */
+.main_body {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.img {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.img img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.img label {
+    font-weight: bold;
+    color: #555;
+}
+
+.img p {
+    margin: 5px 0 10px 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.img button {
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.img button:hover {
+    background-color: #005cb2;
+}
+
+/* Footer */
+footer {
+    background-color: #1e88e5;
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    margin-top: 20px;
+}
+
+footer p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #ffd700;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: white;
+}
+
+sdfsd
+sd
