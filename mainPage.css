@@ -16,7 +16,7 @@ body {
 }
 
 #container {
-    width: 80%;
+    width: 99%;
     background: #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -29,7 +29,7 @@ body {
     color: #ffffff;
     display: flex;
     justify-content: space-around;
-    padding: 15px 0;
+    padding: 35px 0;
 }
 
 #nav a {
@@ -52,7 +52,7 @@ body {
     justify-content: center;
 }
 
-.img {
+.welcome_container {
     background: #f0f0f0;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -62,29 +62,18 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.img:hover {
+.welcome_container:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.img img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.img label {
-    font-weight: bold;
-    color: #555;
-}
-
-.img p {
+.welcome_container p {
     margin: 5px 0 10px 0;
     color: #666;
     font-size: 16px;
 }
 
-.img button {
+.welcome_container button {
     background-color: #1e88e5;
     color: white;
     border: none;
@@ -95,16 +84,17 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.img button:hover {
+.welcome_container button:hover {
     background-color: #005cb2;
 }
 
 /* Footer */
 footer {
+    width:100%;
     background-color: #1e88e5;
     color: white;
     text-align: center;
-    padding: 15px 10px;
+    padding: 30px 10px;
     margin-top: 20px;
 }
 
