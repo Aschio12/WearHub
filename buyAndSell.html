@@ -53,30 +53,7 @@
             <button id="sellBtn"><b>SELL</b></button>
         </nav>
         <div id="img_container">
-            <div class="img">
-                <img src="/images/20106347_50082827_1000.webp" alt="">
-                <label for="price"><b>PRICE : $</b></label>
-                <p id="price">1200</p>
-                <button><b>BUY</b></button>
-            </div>
-            <div class="img">
-                <img src="/images/21254500_52018295_2048.webp" alt="">
-                <label for="price"><b>PRICE : $</b></label>
-                <p id="price">1200</p>
-                <button><b>BUY</b></button>
-            </div>
-            <div class="img">
-                <img src="/images/21342053_51489402_480.webp" alt="">
-                <label for="price"><b>PRICE : $</b></label>
-                <p id="price">1200</p>
-                <button><b>BUY</b></button>
-            </div>
-            <div class="img">
-                <img src="/images/27475366_57334488_480.webp" alt="">
-                <label for="price"><b>PRICE : $</b></label>
-                <p id="price">1200</p>
-                <button><b>BUY</b></button>
-            </div>
+            <!-- Existing images will be appended here -->
         </div>
         <footer>
             <p>&copy; 2025 WearHub. All rights reserved.</p>
@@ -94,8 +71,13 @@
             <form id="sellForm">
                 <label for="productImage">Upload Image:</label><br>
                 <input type="file" id="productImage" name="productImage" accept="image/*" required><br><br>
+                
                 <label for="productPrice">Price:</label><br>
                 <input type="number" id="productPrice" name="productPrice" required><br><br>
+                
+                <label for="contactInfo">Contact Information:</label><br>
+                <input type="text" id="contactInfo" name="contactInfo" placeholder="Enter your phone or email" required><br><br>
+                
                 <button type="submit"><b>Submit</b></button>
             </form>
         </div>
@@ -106,6 +88,11 @@
         var btn = document.getElementById("sellBtn");
         var span = document.getElementsByClassName("close")[0];
         var imgContainer = document.getElementById("img_container");
+
+        // Load existing items from localStorage
+        window.onload = function() {
+            loadImages();
+        };
 
         btn.onclick = function() {
             modal.style.display = "block";
@@ -126,34 +113,68 @@
 
             var imageInput = document.getElementById("productImage");
             var priceInput = document.getElementById("productPrice");
-            var priceValue = priceInput.value;
+            var contactInput = document.getElementById("contactInfo");
 
+            var newProduct = {
+                image: URL.createObjectURL(imageInput.files[0]), // Temporary URL for the image
+                price: priceInput.value,
+                contact: contactInput.value, // Store the contact information
+                status: "Available" // Default status
+            };
+
+            saveToLocalStorage(newProduct); // Save to localStorage
+            appendImageToContainer(newProduct); // Add to the page
+
+            modal.style.display = "none"; // Close modal
+            priceInput.value = ""; // Clear price input
+            contactInput.value = ""; // Clear contact input
+            imageInput.value = ""; // Clear image input
+        };
+
+        function appendImageToContainer(product) {
             var newImgDiv = document.createElement("div");
             newImgDiv.className = "img";
 
             var newImg = document.createElement("img");
-            newImg.src = URL.createObjectURL(imageInput.files[0]);
+            newImg.src = product.image;
             newImg.alt = "";
 
             var priceLabel = document.createElement("label");
             priceLabel.innerHTML = "<b>PRICE : $</b>";
 
             var priceParagraph = document.createElement("p");
-            priceParagraph.innerText = priceValue;
+            priceParagraph.innerText = product.price;
 
-            var buyButton = document.createElement("button");
-            buyButton.innerHTML = "<b>BUY</b>";
+            var contactLabel = document.createElement("label");
+            contactLabel.innerHTML = "<b>CONTACT : </b>";
+
+            var contactParagraph = document.createElement("p");
+            contactParagraph.innerText = product.contact;
+
+            var statusParagraph = document.createElement("p");
+            statusParagraph.innerHTML = `<b>STATUS: ${product.status}</b>`;
 
             newImgDiv.appendChild(newImg);
             newImgDiv.appendChild(priceLabel);
             newImgDiv.appendChild(priceParagraph);
-            newImgDiv.appendChild(buyButton);
+            newImgDiv.appendChild(contactLabel);
+            newImgDiv.appendChild(contactParagraph);
+            newImgDiv.appendChild(statusParagraph);
 
             imgContainer.appendChild(newImgDiv);
+        }
 
-            modal.style.display = "none"; // Close the modal
-            priceInput.value = ""; // Clear the price input
-            imageInput.value = ""; // Clear the image input
+        function saveToLocalStorage(product) {
+            var products = JSON.parse(localStorage.getItem('products')) || [];
+            products.push(product);
+            localStorage.setItem('products', JSON.stringify(products));
+        }
+
+        function loadImages() {
+            var products = JSON.parse(localStorage.getItem('products')) || [];
+            products.forEach(function(product) {
+                appendImageToContainer(product);
+            });
         }
     </script>
 </body>
