@@ -40,6 +40,25 @@
             text-decoration: none;
             cursor: pointer;
         }
+        /* Product image container */
+        #img_container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .img {
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+        }
+        .img img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .img p {
+            font-size: 1.1em;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -47,7 +66,7 @@
         <nav id="nav">
             <a href="mainPage.html"><h2><b> HOME</b></h2></a>
             <a href="buyAndSell.html"><h2><b>BUY AND SELL</b></h2></a>
-            <a href="#"><h2><b>HISTORY</b></h2></a>
+            <a href="history.html"><h2><b>HISTORY</b></h2></a>
             <a href="#"><h2><b>ABOUT US</b></h2></a>
             <a href="#"><h2><b>PROFILE</b></h2></a>
             <button id="sellBtn"><b>SELL</b></button>
@@ -64,6 +83,7 @@
         </footer>
     </div>
 
+    <!-- Modal for adding a new product -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -74,7 +94,7 @@
                 
                 <label for="productPrice">Price:</label><br>
                 <input type="number" id="productPrice" name="productPrice" required><br><br>
-                
+
                 <label for="contactInfo">Contact Information:</label><br>
                 <input type="text" id="contactInfo" name="contactInfo" placeholder="Enter your phone or email" required><br><br>
                 
@@ -113,16 +133,19 @@
     
             var imageInput = document.getElementById("productImage");
             var priceInput = document.getElementById("productPrice");
+            var contactInput = document.getElementById("contactInfo");  // Added contact info input
             var priceValue = priceInput.value;
+            var contactValue = contactInput.value;
     
             // Convert the uploaded image to Base64
             var file = imageInput.files[0];
             var base64Image = await toBase64(file);
     
-            // Create an object to store image and price
+            // Create an object to store image, price, and contact info
             var newProduct = {
                 image: base64Image,
-                price: priceValue
+                price: priceValue,
+                contactInfo: contactValue  // Store contact info
             };
     
             // Store in localStorage
@@ -133,6 +156,7 @@
     
             modal.style.display = "none"; // Close the modal
             priceInput.value = ""; // Clear the price input
+            contactInput.value = ""; // Clear the contact input
             imageInput.value = ""; // Clear the image input
         };
     
@@ -142,23 +166,25 @@
     
             var newImg = document.createElement("img");
             newImg.src = product.image;
-            newImg.alt = "";
+            newImg.alt = "Product Image";
     
             var priceLabel = document.createElement("label");
-            priceLabel.innerHTML = "<b>PRICE : $</b>";
+            priceLabel.innerHTML = "<b>PRICE: $</b>";
     
             var priceParagraph = document.createElement("p");
             priceParagraph.innerText = product.price;
-    
-            var availabilityMessage = document.createElement("p");
-            availabilityMessage.innerText = "Available";
-            availabilityMessage.style.color = "green";
-            availabilityMessage.style.fontWeight = "bold";
+
+            var contactLabel = document.createElement("label");
+            contactLabel.innerHTML = "<b>Contact: </b>";
+
+            var contactParagraph = document.createElement("p");
+            contactParagraph.innerText = product.contactInfo;
     
             newImgDiv.appendChild(newImg);
             newImgDiv.appendChild(priceLabel);
             newImgDiv.appendChild(priceParagraph);
-            newImgDiv.appendChild(availabilityMessage);
+            newImgDiv.appendChild(contactLabel);
+            newImgDiv.appendChild(contactParagraph);
     
             imgContainer.appendChild(newImgDiv);
         }
@@ -187,6 +213,5 @@
             });
         }
     </script>
-    
 </body>
 </html>

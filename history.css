@@ -1,0 +1,156 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+/* History Page Container */
+.history-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 99%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Navigation Bar */
+#nav {
+    background: linear-gradient(90deg, #a4c190, #dbf4f4);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#nav a:hover {
+    color: hsl(51, 100%, 50%);
+    transform: scale(1.1);
+}
+
+#nav a:first-child {
+    color: #fcf805;
+}
+
+#nav a:first-child:hover {
+    color: #ffd700;
+}
+
+/* Main Content */
+.history-container h1 {
+    text-align: center;
+    font-size: 36px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #333;
+    margin-bottom: 30px;
+    transition: color 0.3s ease-in-out 0.2s;
+}
+
+.history-container h1:hover {
+    color: rgba(252, 157, 5, 0.621);
+}
+
+.history-container h1 span {
+    color: rgba(252, 157, 5, 0.621);
+    font-size: larger;
+    transition: transform 0.2s ease-out 0.3s;
+}
+
+.history-container h1 span:hover {
+    transform: scale(1.2);
+}
+
+/* Product Item */
+.product-item {
+    background-color: #fff;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-item img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+.product-item p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.delist-btn {
+    padding: 10px 15px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.delist-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Product Count */
+#product-count {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background: linear-gradient(90deg, #a4c190, #dbf4f4);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+    margin-top: 20px;
+}
+
+footer p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #ffd700;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: white;
+}
