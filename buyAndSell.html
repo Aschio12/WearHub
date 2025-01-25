@@ -88,94 +88,105 @@
         var btn = document.getElementById("sellBtn");
         var span = document.getElementsByClassName("close")[0];
         var imgContainer = document.getElementById("img_container");
-
+    
         // Load existing items from localStorage
         window.onload = function() {
             loadImages();
         };
-
+    
         btn.onclick = function() {
             modal.style.display = "block";
-        }
-
+        };
+    
         span.onclick = function() {
             modal.style.display = "none";
-        }
-
+        };
+    
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        }
-
-        document.getElementById("sellForm").onsubmit = function(event) {
+        };
+    
+        document.getElementById("sellForm").onsubmit = async function(event) {
             event.preventDefault(); // Prevent form submission
-
+    
             var imageInput = document.getElementById("productImage");
             var priceInput = document.getElementById("productPrice");
-            var contactInput = document.getElementById("contactInfo");
-
+            var priceValue = priceInput.value;
+    
+            // Convert the uploaded image to Base64
+            var file = imageInput.files[0];
+            var base64Image = await toBase64(file);
+    
+            // Create an object to store image and price
             var newProduct = {
-                image: URL.createObjectURL(imageInput.files[0]), // Temporary URL for the image
-                price: priceInput.value,
-                contact: contactInput.value, // Store the contact information
-                status: "Available" // Default status
+                image: base64Image,
+                price: priceValue
             };
-
-            saveToLocalStorage(newProduct); // Save to localStorage
-            appendImageToContainer(newProduct); // Add to the page
-
-            modal.style.display = "none"; // Close modal
-            priceInput.value = ""; // Clear price input
-            contactInput.value = ""; // Clear contact input
-            imageInput.value = ""; // Clear image input
+    
+            // Store in localStorage
+            saveToLocalStorage(newProduct);
+    
+            // Append to the image container
+            appendImageToContainer(newProduct);
+    
+            modal.style.display = "none"; // Close the modal
+            priceInput.value = ""; // Clear the price input
+            imageInput.value = ""; // Clear the image input
         };
-
+    
         function appendImageToContainer(product) {
             var newImgDiv = document.createElement("div");
             newImgDiv.className = "img";
-
+    
             var newImg = document.createElement("img");
             newImg.src = product.image;
             newImg.alt = "";
-
+    
             var priceLabel = document.createElement("label");
             priceLabel.innerHTML = "<b>PRICE : $</b>";
-
+    
             var priceParagraph = document.createElement("p");
             priceParagraph.innerText = product.price;
-
-            var contactLabel = document.createElement("label");
-            contactLabel.innerHTML = "<b>CONTACT : </b>";
-
-            var contactParagraph = document.createElement("p");
-            contactParagraph.innerText = product.contact;
-
-            var statusParagraph = document.createElement("p");
-            statusParagraph.innerHTML = `<b>STATUS: ${product.status}</b>`;
-
+    
+            var availabilityMessage = document.createElement("p");
+            availabilityMessage.innerText = "Available";
+            availabilityMessage.style.color = "green";
+            availabilityMessage.style.fontWeight = "bold";
+    
             newImgDiv.appendChild(newImg);
             newImgDiv.appendChild(priceLabel);
             newImgDiv.appendChild(priceParagraph);
-            newImgDiv.appendChild(contactLabel);
-            newImgDiv.appendChild(contactParagraph);
-            newImgDiv.appendChild(statusParagraph);
-
+            newImgDiv.appendChild(availabilityMessage);
+    
             imgContainer.appendChild(newImgDiv);
         }
-
+    
         function saveToLocalStorage(product) {
-            var products = JSON.parse(localStorage.getItem('products')) || [];
-            products.push(product);
-            localStorage.setItem('products', JSON.stringify(products));
+            // Get existing products from localStorage
+            var products = JSON.parse(localStorage.getItem("products")) || [];
+            products.push(product); // Add new product
+            localStorage.setItem("products", JSON.stringify(products)); // Save back to localStorage
         }
-
+    
         function loadImages() {
-            var products = JSON.parse(localStorage.getItem('products')) || [];
+            // Retrieve images from localStorage
+            var products = JSON.parse(localStorage.getItem("products")) || [];
             products.forEach(function(product) {
                 appendImageToContainer(product);
             });
         }
+    
+        function toBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
     </script>
+    
 </body>
 </html>

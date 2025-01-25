@@ -1,5 +1,3 @@
-/* buyAndSell.css */
-
 body, h2, p, ul, li {
     margin: 0;
     padding: 0;
@@ -10,23 +8,53 @@ body, h2, p, ul, li {
     background-color: #f4f4f4;
 }
 
+/* Updated Header */
 #nav {
-    background-color: #1e88e5;
+    background: linear-gradient(90deg, #a4c190, #f9fbfb); 
     color: #ffffff;
     display: flex;
     justify-content: space-around;
-    padding: 35px 0;
+    align-items: center;
+    padding: 25px 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
 }
 
 #nav a {
     text-decoration: none;
     color: #ffffff;
     font-size: 18px;
-    transition: color 0.3s ease;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 #nav a:hover {
+    color: #ffd700; /* Gold color on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Home link with a distinct color */
+#nav a:first-child {
+    color: #ffdd57; /* Yellow for Home link */
+}
+
+#nav a:first-child:hover {
     color: #ffd700;
+}
+
+button {
+    background-color: #ff6f61; /* Bright coral for the button */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #e65550;
+    transform: scale(1.05);
 }
 
 #img_container {
@@ -64,28 +92,15 @@ body, h2, p, ul, li {
     margin: 10px 0;
 }
 
-button {
-    background-color: orange;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-button:hover {
-    background-color: darkorange;
-    transform: scale(1.05);
-}
-
+/* Updated Footer */
 footer {
-    width:100%;
-    background-color: #1e88e5;
+    width: 100%;
+    background: linear-gradient(90deg, #a4c190, #f9fbfb); 
     color: white;
     text-align: center;
     padding: 30px 10px;
     margin-top: 20px;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for footer */
 }
 
 footer p {
@@ -102,7 +117,7 @@ footer ul {
 
 footer ul li a {
     text-decoration: none;
-    color: #ffd700;
+    color: #ffdd57; /* Yellow links in footer */
     font-size: 14px;
     transition: color 0.3s ease;
 }
@@ -110,4 +125,3 @@ footer ul li a {
 footer ul li a:hover {
     color: white;
 }
-
